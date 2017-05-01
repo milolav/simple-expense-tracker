@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="lib/angular/angular-material.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/i18n/angular-locale_hr.js"></script>
+  <script src="lib/angular/angular-route.min.js"></script>
+  <script src="lib/angular/angular-animate.min.js"></script>
+  <script src="lib/angular/angular-aria.min.js"></script>
+  <script src="lib/angular/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="lib/angular/angular-material.min.js"></script>
+
+  <!-- Other libraries -->
+  <script src="lib/moment/moment-with-locales.min.js"></script>
+
+  <script src="js/app.js"></script>
+
+</head>
+
+<body ng-app="app" ng-controller="AppCtrl as ctrl" ng-cloak>
+  <!--
+    Your HTML content here
+  -->
+  <div ng-view flex></div>
+</body>
+
+</html>

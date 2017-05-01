@@ -1,0 +1,37 @@
+﻿<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" aria-label="Menu" ng-show="false">
+      <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+    </md-button>
+    <h2 class="md-flex">Expenses</h2>
+  </div>
+</md-toolbar>
+<md-content flex>
+  <div flex layout="column" layout-align="center center" ng-show="!dataLoaded">
+    <p>&nbsp;</p>
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    <p>&nbsp;</p>
+  </div>
+  <div flex layout="column" layout-align="center center" ng-show="dataLoaded && loadMessage.length > 0">
+    <p>&nbsp;</p>
+    <p>{{loadMessage}}</p>
+    <p>&nbsp;</p>
+  </div>
+  <md-list>
+    <md-list-item class="md-3-line" ng-repeat="exp in expenses | orderBy:'date':true" ng-click="edit(exp.id)">
+      <md-icon class="md-avatar-icon" md-svg-icon="img/icons/ic_attach_money_white_24px.svg"></md-icon>
+      <div class="md-list-item-text">
+        <h3>{{exp.party || '&lt;Party&gt;'}}</h3>
+        <h4>{{exp.description || '&lt;No description&gt;'}}</h4>
+        <p>{{exp.date | date: 'dd.MM.yyyy.'}}</p>
+      </div>
+      <div style="padding-left: 0.5em;font-size: 14px; font-weight: bold;">
+        <p>{{exp.amount | currency:""}}</p>
+      </div>
+      <md-divider></md-divider>
+    </md-list-item>
+  </md-list>
+  <md-button class="md-fab md-fab-bottom-right" aria-label="Use Android" style="position:fixed !important;" ng-click="createNew()">
+    <md-icon md-svg-icon="img/icons/ic_add_white_24px.svg"></md-icon>
+  </md-button>
+</md-content>

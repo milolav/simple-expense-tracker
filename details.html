@@ -1,0 +1,58 @@
+﻿<form name="expenseForm" ng-submit="save()">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Back" ng-click="goBack()">
+        <md-icon md-svg-icon="img/icons/{{expenseForm.$dirty ? 'ic_close_white_18px.svg' : 'ic_arrow_back_white_24px.svg'}}"></md-icon>
+      </md-button>
+
+      <h2 flex md-truncate>{{formLabel}}</h2>
+
+      <md-button type="submit" class="md-icon-button" aria-label="Save" ng-disabled="!expenseForm.$valid">
+        <md-icon md-svg-icon="img/icons/ic_check_white_18px.svg"></md-icon>
+      </md-button>
+      <md-menu>
+        <md-button aria-label="More" class="md-icon-button" ng-show="!isNew" ng-click="$mdMenu.open($event)">
+          <md-icon md-svg-icon="img/icons/ic_more_vert_white_18px.svg"></md-icon>
+        </md-button>
+        <md-menu-content>
+          <md-menu-item>
+            <md-button ng-click="confirmDelete()">Delete</md-button>
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </md-toolbar>
+  <md-content flex layout-padding>
+    <div layout="column">
+      <md-input-container class="xm-fixed-label xm-input-no-height">
+        <label>Amount</label>
+        <input required class="md-display-3 xm-right-align" ng-model="amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?/"
+          step="0.01" inputmode="numeric">
+        <div ng-messages="amount.$error">
+          <div ng-message="required">Please enter amount.</div>
+        </div>
+      </md-input-container>
+      <div layout="row" flex>
+
+        <md-input-container flex>
+          <label>Party</label>
+          <md-select ng-model="party">
+            <md-option ng-repeat="p in parties | orderBy:p" ng-value="p">{{p}}</md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container>
+          <md-button class="md-primary md-raised" ng-click="promptNewParty()">New</md-button>
+        </md-input-container>
+      </div>
+      <md-input-container>
+        <label>Description</label>
+        <input ng-model="description">
+      </md-input-container>
+      <md-input-container>
+        <label>Date</label>
+        <md-datepicker ng-required="true" required ng-model="date"></md-datepicker>
+        <div ng-messages="date.$error">
+          <div ng-message="required">You must select a date.</div>
+        </div>
+      </md-input-container>
+  </md-content>
+</form>
